@@ -22,16 +22,16 @@ const Navigation = ({ userCredits }: NavigationProps) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
+            <a href="/" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
               Browse Classes
             </a>
-            <a href="#" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
+            <a href="/dashboard" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
               My Dashboard
             </a>
-            <a href="#" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
+            <a href="/store" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
               Store
             </a>
-            <a href="#" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
+            <a href="/support" className="text-gray-700 hover:text-fitness-red transition-colors font-medium">
               Support
             </a>
           </div>
@@ -55,8 +55,10 @@ const Navigation = ({ userCredits }: NavigationProps) => {
               <ShoppingBag className="h-4 w-4" />
             </Button>
             
-            <Button variant="ghost" size="sm">
-              <User className="h-4 w-4" />
+            <Button variant="ghost" size="sm" asChild>
+              <a href="/login">
+                <User className="h-4 w-4" />
+              </a>
             </Button>
 
             {/* Mobile Menu */}
