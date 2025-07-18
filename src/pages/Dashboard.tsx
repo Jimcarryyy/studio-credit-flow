@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, Clock, CreditCard, User, Settings, BarChart3 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import { useToast } from '@/hooks/use-toast';
 
 const Dashboard = () => {
+  const { toast } = useToast();
+  const [cancellingClass, setCancellingClass] = useState<number | null>(null);
   const upcomingClasses = [
     {
       id: 1,
@@ -42,6 +46,26 @@ const Dashboard = () => {
     { name: "Strength Training", studio: "IronGym", date: "Jan 10", credits: 5 },
     { name: "Meditation", studio: "Mindful Space", date: "Jan 8", credits: 2 }
   ];
+
+  const handleCancelClass = async (classId: number) => {
+    setCancellingClass(classId);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setCancellingClass(null);
+      toast({
+        title: "Class Cancelled",
+        description: "Your class has been cancelled and credits have been refunded.",
+      });
+    }, 1000);
+  };
+
+  const handleQuickAction = (action: string) => {
+    toast({
+      title: action,
+      description: `${action} feature will be available soon!`,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,12 +148,21 @@ const Dashboard = () => {
                     </div>
                     <div className="flex items-center space-x-3">
                       <Badge variant="secondary">{classItem.credits} credits</Badge>
-                      <Button variant="outline" size="sm">Cancel</Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleCancelClass(classItem.id)}
+                        disabled={cancellingClass === classItem.id}
+                      >
+                        {cancellingClass === classItem.id ? 'Cancelling...' : 'Cancel'}
+                      </Button>
                     </div>
                   </div>
                 ))}
               </div>
-              <Button className="w-full mt-4">Browse More Classes</Button>
+              <Button className="w-full mt-4" onClick={() => handleQuickAction("Browse More Classes")}>
+                Browse More Classes
+              </Button>
             </CardContent>
           </Card>
 
@@ -168,15 +201,27 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
+              <Button 
+                variant="outline" 
+                className="h-20 flex flex-col items-center justify-center"
+                onClick={() => handleQuickAction("Buy Credits")}
+              >
                 <CreditCard className="h-6 w-6 mb-2" />
                 Buy Credits
               </Button>
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
+              <Button 
+                variant="outline" 
+                className="h-20 flex flex-col items-center justify-center"
+                onClick={() => handleQuickAction("Edit Profile")}
+              >
                 <User className="h-6 w-6 mb-2" />
                 Edit Profile
               </Button>
-              <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
+              <Button 
+                variant="outline" 
+                className="h-20 flex flex-col items-center justify-center"
+                onClick={() => handleQuickAction("Preferences")}
+              >
                 <Settings className="h-6 w-6 mb-2" />
                 Preferences
               </Button>
@@ -184,6 +229,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 };

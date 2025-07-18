@@ -7,8 +7,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import { useToast } from '@/hooks/use-toast';
 
 const Support = () => {
+  const { toast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState('');
   const [ticketSubmitted, setTicketSubmitted] = useState(false);
 
@@ -48,6 +51,13 @@ const Support = () => {
     setTimeout(() => setTicketSubmitted(false), 3000);
   };
 
+  const handleContactOption = (option: string) => {
+    toast({
+      title: `${option} Selected`,
+      description: `${option} feature will be available soon!`,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation userCredits={47} />
@@ -63,7 +73,10 @@ const Support = () => {
 
         {/* Quick Contact Options */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+          <Card 
+            className="text-center hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => handleContactOption("Live Chat")}
+          >
             <CardContent className="p-6">
               <MessageCircle className="h-12 w-12 text-primary mx-auto mb-4" />
               <h3 className="font-semibold text-foreground mb-2">Live Chat</h3>
@@ -74,7 +87,10 @@ const Support = () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+          <Card 
+            className="text-center hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => handleContactOption("Phone Support")}
+          >
             <CardContent className="p-6">
               <Phone className="h-12 w-12 text-fitness-red mx-auto mb-4" />
               <h3 className="font-semibold text-foreground mb-2">Phone Support</h3>
@@ -85,7 +101,10 @@ const Support = () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center hover:shadow-lg transition-shadow cursor-pointer">
+          <Card 
+            className="text-center hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => handleContactOption("Email Support")}
+          >
             <CardContent className="p-6">
               <Mail className="h-12 w-12 text-success mx-auto mb-4" />
               <h3 className="font-semibold text-foreground mb-2">Email Support</h3>
@@ -211,15 +230,27 @@ const Support = () => {
           <CardContent className="p-6">
             <h3 className="font-semibold text-foreground mb-4 text-center">Additional Resources</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button variant="outline" className="h-16 flex flex-col items-center justify-center">
+              <Button 
+                variant="outline" 
+                className="h-16 flex flex-col items-center justify-center"
+                onClick={() => handleContactOption("User Guide")}
+              >
                 <FileText className="h-5 w-5 mb-1" />
                 User Guide
               </Button>
-              <Button variant="outline" className="h-16 flex flex-col items-center justify-center">
+              <Button 
+                variant="outline" 
+                className="h-16 flex flex-col items-center justify-center"
+                onClick={() => handleContactOption("Community Forum")}
+              >
                 <MessageCircle className="h-5 w-5 mb-1" />
                 Community Forum
               </Button>
-              <Button variant="outline" className="h-16 flex flex-col items-center justify-center">
+              <Button 
+                variant="outline" 
+                className="h-16 flex flex-col items-center justify-center"
+                onClick={() => handleContactOption("Studio Directory")}
+              >
                 <Phone className="h-5 w-5 mb-1" />
                 Studio Directory
               </Button>
@@ -227,6 +258,7 @@ const Support = () => {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 };
