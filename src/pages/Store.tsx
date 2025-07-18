@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 const Store = () => {
   const [cartCount, setCartCount] = useState(0);
@@ -15,7 +16,7 @@ const Store = () => {
       name: "StudioLink Yoga Mat",
       price: 45,
       originalPrice: 60,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1506629905607-c70c2aa31b77?w=500&h=500&fit=crop",
       rating: 4.8,
       reviews: 124,
       category: "Equipment",
@@ -25,7 +26,7 @@ const Store = () => {
       id: 2,
       name: "Premium Water Bottle",
       price: 25,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=500&h=500&fit=crop",
       rating: 4.9,
       reviews: 89,
       category: "Accessories",
@@ -35,7 +36,7 @@ const Store = () => {
       id: 3,
       name: "StudioLink Gym Bag",
       price: 55,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop",
       rating: 4.7,
       reviews: 156,
       category: "Bags",
@@ -45,7 +46,7 @@ const Store = () => {
       id: 4,
       name: "Compression Socks",
       price: 18,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?w=500&h=500&fit=crop",
       rating: 4.6,
       reviews: 203,
       category: "Apparel",
@@ -55,7 +56,7 @@ const Store = () => {
       id: 5,
       name: "Resistance Bands Set",
       price: 35,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&h=500&fit=crop",
       rating: 4.8,
       reviews: 167,
       category: "Equipment",
@@ -65,7 +66,7 @@ const Store = () => {
       id: 6,
       name: "StudioLink T-Shirt",
       price: 30,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop",
       rating: 4.5,
       reviews: 91,
       category: "Apparel",
@@ -242,6 +243,7 @@ const Store = () => {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 };
